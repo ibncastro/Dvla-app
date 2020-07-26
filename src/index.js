@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './client/App'
+import { ApolloProvider } from 'react-apollo'
 import * as serviceWorker from './serviceWorker';
+import client from './client/apollo'
 
-ReactDOM.render(
-  <React.StrictMode>
+// import default style
+import 'rsuite/dist/styles/rsuite-default.css'
+
+ReactDOM.render(    
+    <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
+    </ApolloProvider>,
   document.getElementById('root')
 );
 
