@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './client/App'
+import './horizontal-menu.css'
+import './index.scss';
+import App from './client/app'
 import { ApolloProvider } from 'react-apollo'
 import * as serviceWorker from './serviceWorker';
 import client from './client/apollo'
 
-// import default style
-import 'rsuite/dist/styles/rsuite-default.css'
 
 ReactDOM.render(    
     <ApolloProvider client={client}>
