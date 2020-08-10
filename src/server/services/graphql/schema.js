@@ -54,9 +54,13 @@ enum FuelTypes {
         title: Titles
         firstName: String
         lastName: String
+        password: String
         middleName: String
         Gender: Gender
         email: String!
+        isEmailVerified: String
+        verificationToken: String
+        avatar: String
         Region: Regions
         dateOfBirth: DateTime
         nationality: String!
@@ -67,7 +71,9 @@ enum FuelTypes {
         mobileNo2: Int 
         postalAddress: String
         ghanaPostCode: String
-
+        passportPhoto: String
+        userType: String
+        vehiclesRegistered: [VReg]
     }
 
     type Vehicle {
@@ -95,6 +101,11 @@ enum FuelTypes {
         key: String
         user: User
         vehicle: Vehicle
+        created: DateTime
+    }
+
+    type Auth {
+        token: String
     }
 
     type RootQuery {
@@ -107,8 +118,42 @@ enum FuelTypes {
         vRegistrations: [VReg]
     }
 
+    input userDetailsInput {
+        title: String
+        firstName: String
+        lastName: String
+        password: String
+        middleName: String
+        Gender: Gender
+        email: String
+        avatar: String
+        Region: Regions
+        dateOfBirth: DateTime
+        nationality: String
+        idType: IdTypes
+        idNumber: String
+        houseNo: String
+        mobileNo1: Int
+        mobileNo2: Int 
+        postalAddress: String
+        ghanaPostCode: String
+        passportPhoto: String
+        userType: String
+    }
+
+    type RootMutation {
+        login(
+            email: String!
+            password: String!
+        ): Auth
+        signup(
+            user: userDetailsInput
+        ): Auth
+    }
+
     schema {
         query: RootQuery
+        mutation: RootMutation
     }
 `;
 

@@ -1,5 +1,10 @@
 import Sequelize from 'sequelize';
-import vreg from '../../models/vreg';
+import { GraphQLScalarType } from 'graphql'
+const Op = Sequelize.Op;
+import bcrypt from 'bcrypt'
+import JWT from 'jsonwebtoken'
+
+const JWT_SECRET = process.env
 
 export default function resolver() {
     
@@ -7,10 +12,37 @@ export default function resolver() {
     const { User, Vehicle, VReg } = db.models;
 
   const resolvers = {
+    User: {
+      vehiclesRegistered(user, args, context){
+        return user.getVRegs()
+      }
+    },
+
+    VReg: {
+      user(VReg, args, context){
+        return VReg.getUser()
+      },
+      vehicle(VReg, args, context){
+        return VReg.getVehicle()
+      }
+    },
+
+    Vehicle: {
+      user(vehicle, args, context) {
+        return vehicle.getUser()
+      },
+      reg(vehicle, args, context){
+        return vehicle.getVReg()
+      }
+    },
 
     RootQuery: {
         users(root, args, context) {
-            return User.findAll({order: [['id', 'DESC']]})
+            return User.findAll({
+              include: [{
+                model: VReg
+              }]
+            })
         },
         user(root, { id }, context) {
           return User.findOne({
@@ -48,22 +80,43 @@ export default function resolver() {
           return VReg.findAll({});
         }
     },
-    Vehicle: {
-      user(vehicle, args, context) {
-        return vehicle.getUser()
+
+    RootMutation: {
+
+      login(root, {email, password}, context){
+          return User.findAll({
+            where:{
+              email
+            },
+            raw: true
+          }).then(async (users) => {
+            if(users.length = 1) {
+              const user = users[0];
+              const passwordvalid = await bcrypt.compare(password, user.password);
+              if(!passwordvalid) {
+                throw new Error('Password does not match');
+              }
+              const token = JWT.sign({email, id: user.id}, "thisisasupersecretstringforyou", {
+                expiresIn: '1d'
+              })
+              return {
+                token
+              }
+            } else {
+              throw new Error("User not found")
+            }
+          })
       }
-    },
-    VReg: {
-      user(vReg, args, context) {
-        return vReg.getUser()
-        // console.log(vReg.getUser())
-      },
-      vehicle(vReg, args, context) {
-        return vReg.getVehicle()
-        // console.log(vReg.getVehicle())
-      }
+
     },
 
+    DateTime: new GraphQLScalarType({
+      name: 'DateTime',
+      description: 'A valid date time value',
+      parseValue: value => new Date(value),
+      serialize: value => new Date(value).toISOString(),
+      parseLiteral: ast => ast.value
+  })
 
   }
 

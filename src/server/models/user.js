@@ -4,9 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.TEXT,
     firstName: DataTypes.TEXT,
     lastName: DataTypes.TEXT,
+    password: DataTypes.TEXT,
     middleName: DataTypes.TEXT,
     Gender: DataTypes.TEXT,
     email: DataTypes.TEXT,
+    isEmailVerified: DataTypes.TEXT,
+    verificationToken: DataTypes.TEXT,
+    avatar: DataTypes.TEXT,
     region: DataTypes.TEXT,
     dateOfBirth: DataTypes.DATE,
     nationality: DataTypes.TEXT,
@@ -16,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     mobileNo1: DataTypes.INTEGER,
     mobileNo2: DataTypes.INTEGER,
     postalAddress: DataTypes.TEXT,
-    ghanaPostCode: DataTypes.TEXT
+    ghanaPostCode: DataTypes.TEXT,
+    passportPhoto: DataTypes.TEXT,
+    userType: DataTypes.TEXT
   }, {});
   User.associate = function(models) {
     User.hasOne(models.Vehicle)
