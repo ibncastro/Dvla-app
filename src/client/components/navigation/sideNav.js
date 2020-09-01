@@ -19,55 +19,50 @@ export default class Sidenav extends Component {
               id="main-menu-navigation"
               data-menu="menu-navigation"
             >
-              <Link to="/dashboard">
+              
                 <li className="dropdown nav-item">
-                  <a className="nav-link">
+                  <Link to="/dashboard" className="nav-link">
                     <i className="feather icon-home" />
                     <span data-i18n="Dashboard">Dashboard</span>
-                  </a>
+                  </Link>
                 </li>
-              </Link>
-              <Link to="/profile">
+             
                 <li className="dropdown nav-item" data-menu="dropdown">
-                  <a className="nav-link" href="#" data-toggle="dropdown">
+                  <Link to="/profile" className="nav-link"  >
                     <i className="feather icon-package" />
                     <span data-i18n="Apps">Profile</span>
-                  </a>
+                  </Link>
                 </li>
-              </Link>
-              <Link>
+              
+            
                 <li className="dropdown nav-item" data-menu="dropdown">
-                  <a className="nav-link" href="#" data-toggle="dropdown">
+                  <Link to="/" className="nav-link" href="#" data-toggle="dropdown">
                     <i className="feather icon-layers" />
                     <span data-i18n="UI Elements">UI Elements</span>
-                  </a>{" "}
+                  </Link>{" "}
                 </li>
-              </Link>
-
-              <Link>
+              
                 <li className="dropdown nav-item" data-menu="dropdown">
-                  <a className="nav-link" href="#" data-toggle="dropdown">
+                  <Link to="" className="nav-link" href="#" data-toggle="dropdown">
                     <i className="feather icon-file" />
                     <span data-i18n="Pages">Pages</span>
-                  </a>
+                  </Link>
                 </li>
-              </Link>
-              <Link>
+              
                 <li className="dropdown nav-item" data-menu="dropdown">
-                  <a className="nav-link" href="#" data-toggle="dropdown">
+                  <Link to="" className="nav-link" href="#" data-toggle="dropdown">
                     <i className="feather icon-bar-chart-2" />
                     <span data-i18n="Charts & Maps">Charts &amp; Maps</span>
-                  </a>{" "}
+                  </Link>{" "}
                 </li>
-              </Link>
-              <Link>
+              
                 <li className="dropdown nav-item" data-menu="dropdown">
-                  <a className="nav-link" href="#" data-toggle="dropdown">
+                  <Link to="" className="nav-link" href="#" data-toggle="dropdown">
                     <i className="feather icon-more-horizontal" />
                     <span data-i18n="Others">Others</span>
-                  </a>
+                  </Link>
                 </li>
-              </Link>
+              
             </ul>
           </div>
         </div>

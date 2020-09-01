@@ -4,8 +4,6 @@ const Op = Sequelize.Op;
 import bcrypt from 'bcrypt'
 import JWT from 'jsonwebtoken'
 
-const JWT_SECRET = process.env
-
 export default function resolver() {
     
     const { db } = this;
@@ -37,6 +35,9 @@ export default function resolver() {
     },
 
     RootQuery: {
+      currentUser(root, args, context) {
+        return context.user;
+    },
         users(root, args, context) {
             return User.findAll({
               include: [{

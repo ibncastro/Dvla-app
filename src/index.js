@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './horizontal-menu.css'
 import './index.scss';
 import App from './client/app'
+import 'bootstrap/dist/js/bootstrap.js';
+import $ from 'jquery';
+import Popper from 'popper.js'
 import { ApolloProvider } from 'react-apollo'
 import * as serviceWorker from './serviceWorker';
 import client from './client/apollo'

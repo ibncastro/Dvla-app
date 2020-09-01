@@ -5,13 +5,13 @@ import Home from './views/Home'
 
 
 export default class App extends Component {
-    render() {
-        return (
-            <div>
-              <Router>
-                <Home />      
-            </Router>  
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Router>
+          <Home />
+        </Router>
+      </div>
+    );
+  }
 }

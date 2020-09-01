@@ -116,6 +116,7 @@ enum FuelTypes {
         vReg(key: String!): [VReg]
         vRegistration(userId: Int!): [VReg]
         vRegistrations: [VReg]
+        currentUser: User
     }
 
     input userDetailsInput {

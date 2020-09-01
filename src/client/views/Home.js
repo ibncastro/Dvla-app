@@ -1,41 +1,52 @@
 import React, { Component } from 'react'
+import { withApollo } from 'react-apollo'
 
-
-import Sidenav from '../components/navigation/sideNav'
-import Mainnav from '../components/navigation/Main-nav'
-import Content from '../components/Content'
+import AllContent from './content'
 import LoginRegister from './loginF'
+import CurrentUserQuery from '../components/Queries/currentUser';
 
-export default class Home extends Component {
-                 state = {
-                   loggedIn: false,
-                 };
+ class Home extends Component {
+   constructor(props) {
+     super(props);
+     this.unsubscribe = props.client.onResetStore(() =>
+       this.changeLoginState(false)
+     );
+   }
 
-                 componentWillMount() {
-                   const token = localStorage.getItem("jwt");
-                   if (token) {
-                     this.setState({ loggedIn: true });
-                   }
-                 }
+   state = {
+     loggedIn: false,
+   };
 
-                 changeLoginState = (loggedIn) => {
-                     this.setState({loggedIn})
-                 }
+   componentWillUnmount() {
+     this.unsubscribe();
+   }
 
-                 render() {
-                   const { loggedIn } = this.state;
-                   return (
-                     <div>
-                       {loggedIn ? (
-                         <div>
-                           <Mainnav />
-                           <Sidenav />
-                           <Content />
-                         </div>
-                       ) : (
-                         <LoginRegister changeLoginState={this.changeLoginState} />
-                       )}
-                     </div>
-                   );
-                 }
-               }
+   componentDidMount() {
+     const token = localStorage.getItem("jwt");
+     if (token) {
+       this.setState({ loggedIn: true });
+     }
+   }
+
+   changeLoginState = (loggedIn) => {
+     this.setState({ loggedIn });
+   };
+
+   render() {
+     const { loggedIn } = this.state;
+     return (
+       <div>
+         {loggedIn ? (
+           <CurrentUserQuery>
+             <AllContent changeLoginState={this.changeLoginState} />
+          </CurrentUserQuery>
+         ) : (
+           <LoginRegister changeLoginState={this.changeLoginState} />
+         )}
+       </div>
+     );
+   }
+ }
+
+
+    export default withApollo(Home)

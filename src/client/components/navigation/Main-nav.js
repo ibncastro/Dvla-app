@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { withApollo } from 'react-apollo'
 import profileImg from "../../assets/app-assets/images/portrait/small/avatar-s-11.jpg"
 
-export default class Mainnav extends Component {
+ class Mainnav extends Component {
 
   state = {
     notificationsHover: false,
@@ -16,8 +17,14 @@ export default class Mainnav extends Component {
     this.setState({profileHover: !this.state.profileHover})
   }
 
-    render() {
+  logout = () => {
+    localStorage.removeItem('jwt');
+    this.props.changeLoginState(false);
+    this.props.client.resetStore();
+  }
 
+    render() {
+      const { currentUser }  = this.props;
       const notificationClass = `dropdown dropdown-notification nav-item${this.state.notificationsHover ? " show" : ""}`
       const profileClass = `dropdown dropdown-user mr-2 nav-item${this.state.profileHover ? " show" : ""}`
 
@@ -112,7 +119,7 @@ export default class Mainnav extends Component {
                           <li className="scrollable-container media-list">
                             <a
                               className="d-flex justify-content-between"
-                              href="javascript:void(0)"
+                              href=""
                             >
                               <div className="media d-flex align-items-start">
                                 <div className="media-left">
@@ -139,7 +146,7 @@ export default class Mainnav extends Component {
                             </a>
                             <a
                               className="d-flex justify-content-between"
-                              href="javascript:void(0)"
+                              href=""
                             >
                               <div className="media d-flex align-items-start">
                                 <div className="media-left">
@@ -165,7 +172,7 @@ export default class Mainnav extends Component {
                             </a>
                             <a
                               className="d-flex justify-content-between"
-                              href="javascript:void(0)"
+                              href=""
                             >
                               <div className="media d-flex align-items-start">
                                 <div className="media-left">
@@ -191,7 +198,7 @@ export default class Mainnav extends Component {
                             </a>
                             <a
                               className="d-flex justify-content-between"
-                              href="javascript:void(0)"
+                              href=""
                             >
                               <div className="media d-flex align-items-start">
                                 <div className="media-left">
@@ -217,7 +224,7 @@ export default class Mainnav extends Component {
                             </a>
                             <a
                               className="d-flex justify-content-between"
-                              href="javascript:void(0)"
+                              href=""
                             >
                               <div className="media d-flex align-items-start">
                                 <div className="media-left">
@@ -245,7 +252,7 @@ export default class Mainnav extends Component {
                           <li className="dropdown-menu-footer">
                             <a
                               className="dropdown-item p-1 text-center"
-                              href="javascript:void(0)"
+                              href=""
                             >
                               Read all notifications
                             </a>
@@ -260,7 +267,7 @@ export default class Mainnav extends Component {
                         >
                           <div className="user-nav mt-1 d-sm-flex d-none">
                             <span className="user-name text-bold-600">
-                              John Doe
+                              {currentUser.firstName}
                             </span>
                            
                           </div>
@@ -291,9 +298,9 @@ export default class Mainnav extends Component {
                             <i className="feather icon-message-square" /> Chats
                           </a>
                           <div className="dropdown-divider" />
-                          <a className="dropdown-item" href="auth-login.html">
+                          <button className="dropdown-item" onClick={this.logout}>
                             <i className="feather icon-power" /> Logout
-                          </a>
+                          </button>
                         </div>
                       </li>
                     </ul>
@@ -305,3 +312,5 @@ export default class Mainnav extends Component {
         );
     }
 }
+
+export default withApollo(Mainnav)

@@ -21,13 +21,7 @@ import loginImg from "../app-assets/images/pages/login.png"
     render() {
       const { error, loading } = this.props;
         return (
-          <div>           
-            {/* <div className="app-content content">
-              <div className="content-overlay">
-              <div className="header-navbar-shadow"></div>
-                <div className="content-wrapper">
-                  <div className="content-header row"></div>
-                  <div className="content-body"></div> */}
+          <div>   
                   <section className="row flexbox-container">
                     <div className="col-xl-8 col-11 d-flex justify-content-center">
                       <div className="card bg-authentication rounded-0 mb-0">
@@ -93,7 +87,7 @@ import loginImg from "../app-assets/images/pages/login.png"
                                                 <i className="vs-icon feather icon-check" />
                                               </span>
                                             </span>
-                                            <span className>Remember me</span>
+                                           
                                           </div>
                                         </fieldset>
                                       </div>
@@ -107,7 +101,7 @@ import loginImg from "../app-assets/images/pages/login.png"
                                       </div>
                                     </div>
                                     <a
-                                      href="auth-register.html"
+                                      href=""
                                       className="btn btn-outline-primary float-left btn-inline"
                                     >
                                       Register
@@ -147,9 +141,6 @@ import loginImg from "../app-assets/images/pages/login.png"
                     </div>
                   </section>
                 </div>
-          //     </div>
-          //   </div>
-          // </div>
         );
     }
 }
