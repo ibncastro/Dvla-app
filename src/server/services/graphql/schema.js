@@ -22,8 +22,8 @@ enum Regions {
 }
 
 enum Gender {
-    MALE
-    FEMALE
+    Male
+    Female
 }
 
 enum IdTypes {
@@ -61,7 +61,7 @@ enum FuelTypes {
         isEmailVerified: String
         verificationToken: String
         avatar: String
-        Region: Regions
+        region: Regions
         dateOfBirth: DateTime
         nationality: String!
         idType: IdTypes
@@ -106,6 +106,7 @@ enum FuelTypes {
 
     type Auth {
         token: String
+        user: User
     }
 
     type RootQuery {
@@ -120,26 +121,24 @@ enum FuelTypes {
     }
 
     input userDetailsInput {
-        title: String
         firstName: String
         lastName: String
         password: String
         middleName: String
-        Gender: Gender
+        gender: String
         email: String
-        avatar: String
-        Region: Regions
-        dateOfBirth: DateTime
+        region: String
+        dob: DateTime
         nationality: String
-        idType: IdTypes
+        idType: String
         idNumber: String
-        houseNo: String
-        mobileNo1: Int
-        mobileNo2: Int 
+        mobileNo1: String
+        mobileNo2: String 
         postalAddress: String
-        ghanaPostCode: String
-        passportPhoto: String
+        ghanaPostcode: String
         userType: String
+        username: String
+        city: String
     }
 
     type RootMutation {
@@ -147,7 +146,7 @@ enum FuelTypes {
             email: String!
             password: String!
         ): Auth
-        signup(
+        register(
             user: userDetailsInput
         ): Auth
     }

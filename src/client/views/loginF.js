@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import LoginMutation from '../components/mutations/login'
 import { Link } from 'react-router-dom'
-import Register from './Register'
+import Registration from './Register'
 
 import loginImg from "../app-assets/images/pages/login.png"
 
@@ -23,6 +23,7 @@ import loginImg from "../app-assets/images/pages/login.png"
    };
 
    render() {
+    const { changeLoginState } = this.props;
      const { error, loading } = this.props;
      return (
        <div className="app-content content">
@@ -119,7 +120,7 @@ import loginImg from "../app-assets/images/pages/login.png"
                    </div>
                    )}
                    { !this.state.showlogin && (
-                     <Register />
+                     <Registration changeLoginState={changeLoginState} showlogin={this.state.showlogin} />
                    )}
                  </div>
                </div>
@@ -136,7 +137,7 @@ export default class LoginRegister extends Component {
     const { changeLoginState } = this.props;
     return (
       <LoginMutation changeLoginState={changeLoginState} >
-        <Login />
+        <Login changeLoginState={changeLoginState} />
       </LoginMutation>
     )
   }

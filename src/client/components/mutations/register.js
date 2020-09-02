@@ -4,31 +4,31 @@ import gql from 'graphql-tag'
 import history from '../history'
 
 
-const LOGIN = gql`
-  mutation login($email : String!, $password : String!) {
-    login(email : $email, password : $password) {
+const REGISTER = gql`
+  mutation register($user: userDetailsInput!) {
+    register(user: $user) {
       token
     }
  }`;
  
 
-export default class LoginMutation extends Component {
+export default class RegisterMutation extends Component {
   render() {
     const { children, changeLoginState } = this.props;
     return (
       <Mutation
-        update = {(store, { data: { login } }) => {
-            if(login.token) {
-                localStorage.setItem('jwt', login.token);
+        update = {(store, { data: { register } }) => {
+            if(register.token) {
+                localStorage.setItem('jwt', register.token);
                 changeLoginState(true);
                 history.push('/dashboard')
                 history.go()
             }
         }}
-      mutation={LOGIN}>
-        {(login, { loading, error}) =>
+      mutation={REGISTER}>
+        {(register, { loading, error}) =>
           React.Children.map(children, function(child){
-            return React.cloneElement(child, { login, loading, error });
+            return React.cloneElement(child, { register, loading, error });
           })
         }
       </Mutation>

@@ -34,6 +34,12 @@ export default function resolver() {
       }
     },
 
+    // Auth: {
+    //   user(auth, args, context) {
+    //     return auth.getUser()
+    //   }
+    // },
+
     RootQuery: {
       currentUser(root, args, context) {
         return context.user;
@@ -101,13 +107,60 @@ export default function resolver() {
                 expiresIn: '1d'
               })
               return {
-                token
+                token,
+                user
               }
             } else {
               throw new Error("User not found")
             }
           })
-      }
+      },
+
+      register(root, { user }, context){
+        return User.findAll({
+            where: {
+                email: user.email
+            },
+            raw: true,
+        }).then(async (users) => {
+            if(users.length){
+                throw new Error('User already Exist');
+            } else {
+                return bcrypt.hash(user.password, 10).then((hash) => {
+                    return User.create({
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      middleName: user.middleName,
+                      email: user.email,
+                      region: user.region,
+                      gender: user.gender,
+                      dob: user.dob,
+                      nationality: user.nationality,
+                      idType: user.idType,
+                      idNumber: user.idNumber,
+                      mobileNo1: user.mobileNo1,
+                      mobileNo2: user.mobileNo2,
+                      postalAddress: user.postalAddress,
+                      ghanaPostCode: user.ghanaPostCode,
+                      password: hash,
+                      username: user.username,
+                      activated: 1,
+                    }).then((newUser) => {
+                      let email = user.email;
+                      const token = JWT.sign(
+                        { email, id: newUser.id },
+                        "thisisasupersecretstringforyou",
+                        { expiresIn: "1d" }
+                      );
+                      return {
+                        token,
+                        user,
+                      };
+                    });                                
+                })
+            }
+        })
+    },
 
     },
 
