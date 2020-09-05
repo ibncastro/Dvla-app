@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class SingleReg extends Component {
     render(){
         const { vreg } = this.props;
         return(
-            <div className="col-lg-6 col-sm-12">
+            <div className="col-lg-6 col-sm-12 ">
             <div className="card">
                 <div className="card-header">
                     <h4 className="card-title">
-                        Registration Number: <strong className="text-info text-uppercase">{vreg.key}</strong></h4>
+                        Registration Number: <strong className="text-info text-uppercase">{vreg.vehicleInspectionNo}</strong></h4>
                 </div>
                 <div className="card-content">
                     <div className="card-body">
@@ -58,7 +59,11 @@ export default class VRegistrations extends Component {
     const { vregs } = this.props;
     return (
       <section id="timeline-card">
-        <div className="row">
+          <div className="row mx-2 ">
+              <Link to="/registerNewVehicle" className="btn btn-outline-primary mr-3"><i className="feather icon-plus"></i> Register New Vehicle</Link>
+              <Link to="/changeOwnerShip" className="btn btn-outline-success "><i className="feather icon-plus"></i> Change Vehicle Owner</Link>
+          </div>
+        <div className="row mt-1">
           {vregs.map((reg, i) => (
             <SingleReg key={i} vreg={reg} />
           ))}

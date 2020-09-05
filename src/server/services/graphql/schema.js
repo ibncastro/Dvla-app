@@ -27,26 +27,26 @@ enum Gender {
 }
 
 enum IdTypes {
-    NATIONALID
-    VOTERSID
-    PASSPORT
+    NationalId
+    VotersId
+    Passport
 }
 
 enum BodyTypes {
-    SALOON
-    TRUCK
-    BUS
-    VAN
+    Saloon
+    Truck
+    Bus
+    Van
 }
 
 enum VehicleUse {
-    COMMERCIAL
-    PRIVATE
+    Commercial
+    Private
 }
 
 enum FuelTypes {
-    PETROL
-    DIESEL
+    Petrol
+    Diesel
 }
 
     type User {
@@ -99,6 +99,9 @@ enum FuelTypes {
     type VReg {
         id: Int
         key: String
+        vehicleInspectionNo: String
+        customsDocNo: String
+        roadWorthyCert: String
         user: User
         vehicle: Vehicle
         created: DateTime
@@ -141,6 +144,20 @@ enum FuelTypes {
         city: String
     }
 
+    input vRegInput {
+        key: String
+        vehicleInspectionNo: String
+        customsDocNo: String
+        roadWorthyCert: String
+        manufacturer: String
+        chasisNo: String
+        bodyType: String
+        modelName: String
+        noOfDoors: String
+        fuelType: String
+        userId: Int
+    }
+
     type RootMutation {
         login(
             email: String!
@@ -149,6 +166,9 @@ enum FuelTypes {
         register(
             user: userDetailsInput
         ): Auth
+        registerVehicle(
+            details: vRegInput
+        ): VReg
     }
 
     schema {

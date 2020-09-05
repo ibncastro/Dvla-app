@@ -34,12 +34,6 @@ export default function resolver() {
       }
     },
 
-    // Auth: {
-    //   user(auth, args, context) {
-    //     return auth.getUser()
-    //   }
-    // },
-
     RootQuery: {
       currentUser(root, args, context) {
         return context.user;
@@ -80,7 +74,8 @@ export default function resolver() {
           return VReg.findAll({
             where: {
               userId: userId
-            }
+            },
+            order: [['createdAt', 'DESC']]
           })
         },
         vRegistrations(root, args, context) {
@@ -161,6 +156,33 @@ export default function resolver() {
             }
         })
     },
+
+    registerVehicle(root, { details }, context){
+      return Vehicle.create({
+        manufacturer: details.manufacturer,
+        chasisNo: details.chasisNo,
+        bodyType: details.bodyType,
+        modelName: details.modelName,
+        noOfDoors: details.noOfDoors,
+        fuelType: details.fuelType,
+        userId: context.user.id
+      }).then(async (newVehicle) => {
+        return VReg.create({
+          key: "1234444444",
+          vehicleInspectionNo: details.vehicleInspectionNo,
+          customsDocNo: details.customsDocNo,
+          roadWorthyCert: details.roadWorthyCert,
+          userId: context.user.id
+        }).then(async (newReg) => {
+          newVehicle.setVReg(newReg.id),
+          newReg.setVehicle(newVehicle.id)
+        }).then((done) => {
+          return done
+        })
+      })
+    }
+
+
 
     },
 

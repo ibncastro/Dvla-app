@@ -8,6 +8,8 @@ const GET_VEHICLES = gql `
     query vRegistration($userId: Int!){
   vRegistration(userId: $userId){
     key
+    vehicleInspectionNo
+
     user{
       firstName
       lastName
@@ -24,7 +26,7 @@ class VRegQuery extends Component {
   getVariables(){
     var query_variables = {};
 
-    query_variables.userId = 1;
+    query_variables.userId = this.props.currentUser.id;
 
     return query_variables;
   }
@@ -38,7 +40,6 @@ class VRegQuery extends Component {
                    if (error) return <Error><p>{error.message}</p></Error>
 
                    const {vRegistration} = data;
-                   console.log(vRegistration)
 
                    return React.Children.map(children, function(child){
                        return React.cloneElement(child, { vregs: vRegistration })

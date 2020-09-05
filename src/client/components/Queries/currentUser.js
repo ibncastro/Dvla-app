@@ -7,11 +7,11 @@ import Error from '../error'
 const CURRENT_USER = gql `
     query currentUser {
         currentUser {
+            id
             firstName
         }
     }
 `;
-
 
 
 class CurrentUser extends Component {
