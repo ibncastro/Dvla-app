@@ -80,17 +80,17 @@ enum FuelTypes {
         id: Int
         manufacturer: String
         chasisNo: String
-        bodyType: BodyTypes
+        bodyType: String
         countryOfOrigin: String
         noOfTyres: Int
         modelName: String
-        vehicleUse: VehicleUse
+        vehicleUse: String
         noOfAxles: Int
         engineMadeBy: String
         noOfDoors: Int
         engineNo: String
         noOfCylinders: Int
-        fuelType: FuelTypes
+        fuelType: String
         horsePower: String
         user: User
         reg: VReg

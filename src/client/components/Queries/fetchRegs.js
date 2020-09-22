@@ -9,14 +9,17 @@ const GET_VEHICLES = gql `
   vRegistration(userId: $userId){
     key
     vehicleInspectionNo
-
-    user{
-      firstName
-      lastName
-    }
+    customsDocNo
+    roadWorthyCert
+    created
     vehicle{
       modelName
       chasisNo
+      fuelType
+      engineNo
+      manufacturer
+      bodyType
+      countryOfOrigin
     }
   }
 }
@@ -40,6 +43,7 @@ class VRegQuery extends Component {
                    if (error) return <Error><p>{error.message}</p></Error>
 
                    const {vRegistration} = data;
+                   console.log(vRegistration)
 
                    return React.Children.map(children, function(child){
                        return React.cloneElement(child, { vregs: vRegistration })

@@ -3,6 +3,10 @@ import LoginMutation from "../components/mutations/login";
 import Error from "../components/error";
 import Registration from "./Register";
 
+import swal from 'sweetalert'
+import history from '../components/history'
+
+
 import loginImg from "../app-assets/images/pages/login.png";
 
 class Login extends Component {
@@ -19,7 +23,18 @@ class Login extends Component {
         email: this.state.email,
         password: this.state.password,
       },
-    });
+    }).then(() => {
+      swal("Login Success!", "Click the button to view your dashboard", "success").then(() => {
+        this.props.changeLoginState(true)
+        history.push('/dashboard')
+        history.go()
+      })
+    }).catch((e) => {
+      swal("Login Faild!", "Please try again", "fa").then(() => {
+          history.push('/')
+          history.go()
+      })
+    })
   };
 
   render() {

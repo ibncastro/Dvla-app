@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
-import history from '../history'
+// import history from '../history'
 
 
 const LOGIN = gql`
@@ -20,9 +20,9 @@ export default class LoginMutation extends Component {
         update = {(store, { data: { login } }) => {
             if(login.token) {
                 localStorage.setItem('jwt', login.token);
-                changeLoginState(true);
-                history.push('/dashboard')
-                history.go()
+                // changeLoginState(true);
+                // history.push('/dashboard')
+                // history.go()
             }
         }}
       mutation={LOGIN}>

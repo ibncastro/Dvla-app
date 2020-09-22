@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import history from "../history"
 
 const GET_VEHICLES = gql`
   query vRegistration($userId: Int!) {
@@ -41,7 +40,7 @@ export class RegisterNewVehicleMutation extends Component {
           };
 
           if (typeof variables !== typeof undefined) {
-            query.variables = variables;
+            query.variables.userId = this.props.currentUser.id;
           }
 
           const data = store.readQuery(query);
@@ -50,7 +49,7 @@ export class RegisterNewVehicleMutation extends Component {
          
 
         }}
-        mutation={REGISTER_VEHICLE}
+        mutation={REGISTER_VEHICLE} 
       >
         {registerVehicle =>
           React.Children.map(children, function (child) {

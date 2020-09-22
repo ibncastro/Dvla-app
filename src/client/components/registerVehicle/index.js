@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 import Keys from "./keys";
-import RegisterNewVehicleMutation from '../mutations/registerVehicle'
+import RegisterNewVehicleMutation from "../mutations/registerVehicle";
+import { UserConsumer } from "../context/user";
+import swal from 'sweetalert'
+import history from '../history'
 
-
- class NewRegistration extends Component {
-  
-  constructor(props){
-    super(props);
-    this.state = {
-      vehicleInspectionNo: "",
-      customsDocNo: "",
-      roadWorthyCert: "",
-      chasisNo: "",
-      manufacturer: "",
-      modelName: "",
-      fuelType: "",
-      noOfDoors: "",
-      bodyType: ""
-    };
-  }
+class NewRegistration extends Component {
+  state = {
+    vehicleInspectionNo: "",
+    customsDocNo: "",
+    roadWorthyCert: "",
+    chasisNo: "",
+    manufacturer: "",
+    modelName: "",
+    fuelType: "",
+    noOfDoors: "",
+    bodyType: "",
+  };
 
   handleChange = (input) => (e) => {
     this.setState({ [input]: e.target.value });
@@ -37,10 +35,17 @@ import RegisterNewVehicleMutation from '../mutations/registerVehicle'
           modelName: this.state.modelName,
           fuelType: this.state.fuelType,
           noOfDoors: this.state.noOfDoors,
-          bodyType: this.state.bodyType
+          bodyType: this.state.bodyType,
         },
       },
-    });
+    }).then(() => {
+      swal("Good job!", "You clicked the button!", "success").then(() => {
+        history.push('/dashboard')
+                history.go()
+      })
+    }).catch((e) => {
+      console.log(e.message)
+    })
   };
 
   render() {
@@ -92,12 +97,15 @@ import RegisterNewVehicleMutation from '../mutations/registerVehicle'
                 <div className="card-header"></div>
                 <div className="card-content">
                   <div className="card-body">
-                    <form onSubmit={this.handleSubmit} className="steps-validation wizard-circle">
+                    <form
+                      onSubmit={this.handleSubmit}
+                      className="steps-validation wizard-circle"
+                    >
                       <div className="row">
                         <div className="col-md-6">Instructions</div>
                         <div className="col-md-6">
                           <h4 className="card-title my-1 alert alert-primary text-center">
-                            Add document Registration Numbers
+                            Add document Reference Numbers
                           </h4>
                           <Keys
                             values={values}
@@ -125,13 +133,11 @@ import RegisterNewVehicleMutation from '../mutations/registerVehicle'
 export default class VehicleRegistration extends Component {
   render() {
     return (
+      <UserConsumer>
         <RegisterNewVehicleMutation>
-        <NewRegistration />
-      </RegisterNewVehicleMutation>
-      
-      
-    )
+          <NewRegistration />
+        </RegisterNewVehicleMutation>
+      </UserConsumer>
+    );
   }
 }
-
-
