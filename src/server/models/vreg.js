@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     customsDocNo: DataTypes.STRING,
     roadWorthyCert: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    vehicleId: DataTypes.INTEGER
+    vehicleId: DataTypes.INTEGER,
+    status: DataTypes.STRING,
+    completionDate: DataTypes.DATE
   }, {});
   VReg.associate = function(models) {
     VReg.belongsTo(models.User);

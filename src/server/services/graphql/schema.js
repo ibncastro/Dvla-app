@@ -99,12 +99,14 @@ enum FuelTypes {
     type VReg {
         id: Int
         key: String
+        status: String
         vehicleInspectionNo: String
         customsDocNo: String
         roadWorthyCert: String
         user: User
         vehicle: Vehicle
         created: DateTime
+        completionDate: DateTime
     }
 
     type Auth {
