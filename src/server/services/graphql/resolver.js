@@ -7,7 +7,7 @@ import JWT from 'jsonwebtoken'
 export default function resolver() {
     
     const { db } = this;
-    const { User, Vehicle, VReg } = db.models;
+    const { User, Vehicle, VReg, changeOwner } = db.models;
 
   const resolvers = {
     User: {
@@ -80,6 +80,14 @@ export default function resolver() {
         },
         vRegistrations(root, args, context) {
           return VReg.findAll({});
+        },
+        getChangeOwner(root, {userId}, context){
+          return changeOwner.findAll({
+            where: {
+              userId: userId
+            },
+            order:[['createdAt', 'DESC']]
+          })
         }
     },
 
@@ -179,6 +187,19 @@ export default function resolver() {
         }).then((done) => {
           return done
         })
+      })
+    },
+
+    changeOwner(root, { details }, context){
+      return changeOwner.create({
+        regNumber: details.key,
+        chasisNo: details.chasisNo,
+        owner: details.owner,
+        ownerTel: details.ownerTel,
+        userId: 1,
+        status: "PENDING"
+      }).then((newdata) => {
+        return newdata
       })
     }
 

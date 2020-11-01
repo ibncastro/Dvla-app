@@ -48,34 +48,7 @@ export default class Keys extends Component {
               </div>
             </div>           
           </div>
-          {/* <div className="row my-2">
-          <label className="mr-2">Requirements :</label>
-                <div className="c-inputs-stacked">
-                  <div className="d-inline-block mr-2">
-                    <div className="vs-checkbox-con vs-checkbox-primary">
-                      <input type="checkbox" defaultValue="false" />
-                      <span className="vs-checkbox">
-                        <span className="vs-checkbox--check">
-                          <i className="vs-icon feather icon-check" />
-                        </span>
-                      </span>
-                      <span className>Staffing</span>
-                    </div>
-                  </div>
-                  <div className="d-inline-block">
-                    <div className="vs-checkbox-con vs-checkbox-primary">
-                      <input type="checkbox" defaultValue="false" />
-                      <span className="vs-checkbox">
-                        <span className="vs-checkbox--check">
-                          <i className="vs-icon feather icon-check" />
-                        </span>
-                      </span>
-                      <span className>Catering</span>
-                    </div>
-                  </div>
-                </div>
-          </div> */}
-
+          
           <div className="alert alert-primary">Vehicle Details</div>
 
           <div className="row">

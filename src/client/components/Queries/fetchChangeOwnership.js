@@ -4,30 +4,17 @@ import gql from 'graphql-tag'
 import Spinner from '../../assets/components/spinner/Loading-spinner'
 import Error from '../error'
 
-const GET_VEHICLES = gql `
-    query vRegistration($userId: Int!){
-  vRegistration(userId: $userId){
-    key
-    vehicleInspectionNo
-    customsDocNo
-    roadWorthyCert
-    created
+const GET_NEWOWNERS = gql `
+query getChangeOwner($userId: Int!) {
+  getChangeOwner(userId: $userId) {
+    regNumber
     status
-    vehicle{
-      modelName
-      chasisNo
-      fuelType
-      engineNo
-      manufacturer
-      bodyType
-      countryOfOrigin
-      
-    }
+    owner
+    chasisNo
   }
-}
-`;
+}`
 
-class VRegQuery extends Component {
+class ChangeOwnerQuery extends Component {
   getVariables(){
     var query_variables = {};
 
@@ -39,16 +26,16 @@ class VRegQuery extends Component {
         const { children } = this.props;
         const variables = this.getVariables()
         return (
-           <Query query={GET_VEHICLES} variables={variables}>
+           <Query query={GET_NEWOWNERS} variables={variables}>
                {({loading, error, data}) => {
                    if (loading) return <Spinner />
                    if (error) return <Error><p>{error.message}</p></Error>
 
-                   const {vRegistration} = data;
-                   console.log(vRegistration)
+                   const { getChangeOwner } = data;
+                   console.log(getChangeOwner)
 
                    return React.Children.map(children, function(child){
-                       return React.cloneElement(child, { vregs:vRegistration })
+                       return React.cloneElement(child, { getOwners: getChangeOwner })
                    })
                }}
            </Query>
@@ -56,4 +43,4 @@ class VRegQuery extends Component {
     }
 }
 
-export default VRegQuery;
+export default ChangeOwnerQuery;

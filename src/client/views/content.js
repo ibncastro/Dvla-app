@@ -15,6 +15,9 @@ const routes = [
     }, {
       path: "/registerNewVehicle",
       main: lazy(() => import("../components/registerVehicle"))
+    },{
+      path: "/changeOwnerShip",
+      main: lazy(() => import("../components/changeOwner"))
     }
 ]
 

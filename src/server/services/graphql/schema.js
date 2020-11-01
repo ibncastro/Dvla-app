@@ -109,6 +109,15 @@ enum FuelTypes {
         completionDate: DateTime
     }
 
+    type changeOwnership {
+        id: Int
+        regNumber: String
+        status: String
+        owner: String
+        ownerTel: String
+        chasisNo: String
+    }
+
     type Auth {
         token: String
         user: User
@@ -123,6 +132,7 @@ enum FuelTypes {
         vRegistration(userId: Int!): [VReg]
         vRegistrations: [VReg]
         currentUser: User
+        getChangeOwner(userId: Int!): [changeOwnership]
     }
 
     input userDetailsInput {
@@ -160,6 +170,13 @@ enum FuelTypes {
         userId: Int
     }
 
+    input changeOwnerInput {
+        key: String,
+        chasisNo: String,
+        owner: String,
+        ownerTel: String
+    }
+
     type RootMutation {
         login(
             email: String!
@@ -171,6 +188,9 @@ enum FuelTypes {
         registerVehicle(
             details: vRegInput
         ): VReg
+        changeOwner(
+            details: changeOwnerInput
+        ): changeOwnership
     }
 
     schema {
