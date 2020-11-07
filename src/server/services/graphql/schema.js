@@ -21,6 +21,8 @@ enum Regions {
     CENTRAL 
 }
 
+
+
 enum Gender {
     Male
     Female
@@ -57,18 +59,18 @@ enum FuelTypes {
         password: String
         middleName: String
         Gender: Gender
-        email: String!
+        email: String
         isEmailVerified: String
         verificationToken: String
         avatar: String
         region: Regions
         dateOfBirth: DateTime
-        nationality: String!
+        nationality: String
         idType: IdTypes
         idNumber: String
         houseNo: String
-        mobileNo1: Int
-        mobileNo2: Int 
+        mobileNo1: String
+        mobileNo2: String
         postalAddress: String
         ghanaPostCode: String
         passportPhoto: String
@@ -104,8 +106,9 @@ enum FuelTypes {
         customsDocNo: String
         roadWorthyCert: String
         user: User
+        center: String
         vehicle: Vehicle
-        created: DateTime
+        createdAt: DateTime
         completionDate: DateTime
     }
 
@@ -177,6 +180,20 @@ enum FuelTypes {
         ownerTel: String
     }
 
+    input updateInfoInput {
+        email: String
+        houseNo: String
+        ghanaPostCode: String
+        postalAddress: String
+        mobileNo1: String
+        mobileNo2: String
+    }
+
+    input passwordInput {
+        oldPassword: String
+        newPassword: String
+    }
+
     type RootMutation {
         login(
             email: String!
@@ -191,6 +208,12 @@ enum FuelTypes {
         changeOwner(
             details: changeOwnerInput
         ): changeOwnership
+        updateInfo(
+            details: updateInfoInput
+        ): User
+        changePass(
+            details: passwordInput
+        ): User
     }
 
     schema {

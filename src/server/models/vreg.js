@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     vehicleId: DataTypes.INTEGER,
     status: DataTypes.STRING,
+    center: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
     completionDate: DataTypes.DATE
   }, {});
   VReg.associate = function(models) {

@@ -11,8 +11,9 @@ const GET_VEHICLES = gql `
     vehicleInspectionNo
     customsDocNo
     roadWorthyCert
-    created
+    createdAt
     status
+    center
     vehicle{
       modelName
       chasisNo

@@ -11,7 +11,7 @@ const routes = [
         main: lazy(() => import("../components/dashboard"))
     }, {
         path: "/profile",
-        main: lazy(() => import("../components/Profile"))
+        main: lazy(() => import("../components/account"))
     }, {
       path: "/registerNewVehicle",
       main: lazy(() => import("../components/registerVehicle"))

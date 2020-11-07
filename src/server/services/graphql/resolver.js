@@ -88,7 +88,8 @@ export default function resolver() {
             },
             order:[['createdAt', 'DESC']]
           })
-        }
+        },
+        
     },
 
     RootMutation: {
@@ -116,6 +117,50 @@ export default function resolver() {
             } else {
               throw new Error("User not found")
             }
+          })
+      },
+
+      changePass(root, { details }, context){
+        return User.findOne({
+          where: {
+            id: context.user.id
+          }
+        }).then( async (user) => {
+          const passValid = await bcrypt.compare(details.oldPassword, user.password);
+
+          if(!passValid){
+            throw new Error('Old password is incorrect')
+          }
+
+          return bcrypt.hash(details.newPassword, 10).then((hash) => {
+            return User.update({
+              password: hash
+            }, {
+              where: {
+                id: user.id
+              }
+              
+            })
+          }).then((user) => {
+            return user
+          })
+        })
+      },
+
+      updateInfo(root, { details }, context){
+          return User.update({
+            email: details.email,
+            houseNo: details.houseNo,
+            ghanaPostCode: details.ghanaPostCode,
+            postalAddress: details.postalAddress,
+            mobileNo1: details.mobileNo1,
+            mobileNo2: details.mobileNo2
+          }, {
+            where: {
+              id: context.user.id
+            }
+          }).then((news) => {
+            return news
           })
       },
 

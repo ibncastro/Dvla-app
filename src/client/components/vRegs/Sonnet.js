@@ -4,7 +4,9 @@ export class Sonnet extends Component {
     render() {
         const { vreg } = this.props;
         return (
-            
+            <div>
+                ipsun
+            </div>  
         )
     }
 }

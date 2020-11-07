@@ -9,6 +9,12 @@ const CURRENT_USER = gql `
         currentUser {
             id
             firstName
+            email
+            houseNo
+            mobileNo1
+            mobileNo2
+            postalAddress
+            ghanaPostCode
         }
     }
 `;

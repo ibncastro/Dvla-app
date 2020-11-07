@@ -267,7 +267,7 @@ import profileImg from "../../assets/app-assets/images/portrait/small/avatar-s-1
                         >
                           <div className="user-nav mt-1 d-sm-flex d-none">
                             <span className="user-name text-bold-600">
-                              {currentUser.firstName}
+                              { currentUser != null ? currentUser.firstName : " "}
                             </span>
                            
                           </div>

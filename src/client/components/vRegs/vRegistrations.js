@@ -76,14 +76,14 @@ class SingleReg extends Component {
                             <td className="text-success">GW-1455-20</td>
                           </tr>
 
-                          <tr>
+                          {/* <tr>
                             <th scope="row">Registration Date</th>
-                            <td className="text-success">{vreg.created}</td>
+                            <td className="text-success">{vreg.createdAt}</td>
                           </tr>
                           <tr>
                             <th scope="row">Registration Expiry Date</th>
-                            <td className="text-danger">{vreg.created}</td>
-                          </tr>
+                            <td className="text-danger">{vreg.createdAt}</td>
+                          </tr> */}
                         </tbody>
                       </table>
                     </Tab>
