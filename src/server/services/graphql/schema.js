@@ -9,7 +9,7 @@ enum Titles {
 }
 
 enum Regions {
-    GREATERACCRA
+    Accra
     BRONGAHAFO
     NORTHERN
     WESTERN
@@ -136,6 +136,7 @@ enum FuelTypes {
         vRegistrations: [VReg]
         currentUser: User
         getChangeOwner(userId: Int!): [changeOwnership]
+        fetchByStatus(status: String): [VReg]
     }
 
     input userDetailsInput {
@@ -214,6 +215,10 @@ enum FuelTypes {
         changePass(
             details: passwordInput
         ): User
+        changeStatus(
+            id: Int!
+            status: String!
+        ): VReg
     }
 
     schema {
