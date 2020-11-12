@@ -98,6 +98,12 @@ enum FuelTypes {
         reg: VReg
     } 
 
+    type Center {
+        id: Int
+        name: String
+        code: String
+    }
+
     type VReg {
         id: Int
         key: String
@@ -106,10 +112,10 @@ enum FuelTypes {
         customsDocNo: String
         roadWorthyCert: String
         user: User
-        center: String
         vehicle: Vehicle
         createdAt: DateTime
         completionDate: DateTime
+        center: Center
     }
 
     type changeOwnership {
@@ -137,6 +143,8 @@ enum FuelTypes {
         currentUser: User
         getChangeOwner(userId: Int!): [changeOwnership]
         fetchByStatus(status: String): [VReg]
+        allCenters: [Center]
+        getCentersById(id: Int): [VReg]
     }
 
     input userDetailsInput {

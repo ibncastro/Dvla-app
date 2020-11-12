@@ -10,11 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     center: DataTypes.STRING,
     createdAt: DataTypes.DATE,
-    completionDate: DataTypes.DATE
+    completionDate: DataTypes.DATE,
+    centerId: DataTypes.INTEGER
   }, {});
   VReg.associate = function(models) {
     VReg.belongsTo(models.User);
     VReg.belongsTo(models.Vehicle)
+    VReg.belongsTo(models.Center)
   };
   return VReg;
 };
