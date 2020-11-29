@@ -6,12 +6,15 @@ import { Tabs, Tab } from "react-bootstrap";
 import PaymentModal from "./PaymentModal";
 import { TabView, TabPanel } from "primereact/tabview";
 import OwnerList from '../changeOwner/changeOwnerQuery'
-
-import Img from "../../app-assets/images/elements/macbook-pro.png";
+import AvatarUpload from './avatarModal'
+import Img from "../../app-assets/car.jpeg";
+import UploadAvatarMutation from '../mutations/uploadAvatar'
 
 class SingleReg extends Component {
   state = {
     show: false,
+    isOpen: false,
+    vId: null
   };
 
   showModal = () => {
@@ -22,9 +25,16 @@ class SingleReg extends Component {
     this.setState({ show: false });
   };
 
+  showModalisOpen = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+      vId: this.props.vreg.id
+    });
+  }
+
   render() {
     const { vreg, ind } = this.props;
-    const { show } = this.state;
+    const { show, vId } = this.state;
     return (
       <div className="col-lg-6 col-sm-12 ">
         <div className="card border-info">
@@ -36,12 +46,18 @@ class SingleReg extends Component {
                   <div className="col-12 ml-4 col-md-8 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                     <div className="d-flex align-items-center justify-content-center">
                       <img
-                        src={Img}
+                        src={ vreg.vehicle.image}
                         className="img-fluid"
-                        alt="product image"
+                        // alt="product image"
                       />
+                          
                     </div>
+                    
                   </div>
+                  <a onClick={this.showModalisOpen} className="btn btn-primary ">{vreg.vehicle.image !== null ? "Change":"Add Image" }</a>        
+                        <UploadAvatarMutation>
+                          <AvatarUpload id={vreg.vehicle.id} isOpen={this.state.isOpen} showModal={this.showModalisOpen} />
+                        </UploadAvatarMutation>
                   {vreg.status === "REVIEW COMPLETE" && (
                     <button
                       className="btn btn-outline-primary mt-4"
@@ -75,15 +91,6 @@ class SingleReg extends Component {
                             <th scope="row">Vehicle Number Plate</th>
                             <td className="text-success">GW-1455-20</td>
                           </tr>
-
-                          {/* <tr>
-                            <th scope="row">Registration Date</th>
-                            <td className="text-success">{vreg.createdAt}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Registration Expiry Date</th>
-                            <td className="text-danger">{vreg.createdAt}</td>
-                          </tr> */}
                         </tbody>
                       </table>
                     </Tab>

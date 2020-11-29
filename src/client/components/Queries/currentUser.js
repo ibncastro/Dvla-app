@@ -15,6 +15,7 @@ const CURRENT_USER = gql `
             mobileNo2
             postalAddress
             ghanaPostCode
+            avatar
         }
     }
 `;

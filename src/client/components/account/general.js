@@ -44,7 +44,6 @@ export default class General extends Component {
 
 
   render() {
-    // const { updateInfo } = this.props;
     return (
       <div className="card">
         <div className="card-content">
@@ -56,7 +55,7 @@ export default class General extends Component {
               aria-labelledby="account-pill-general"
               aria-expanded="true"
             >
-              <div className="media">
+              {/* <div className="media">
                 <a href="">
                   <img
                     src={img}
@@ -83,7 +82,7 @@ export default class General extends Component {
                     <small>Allowed JPG, GIF or PNG. Max size of 800kB</small>
                   </p>
                 </div>
-              </div>
+              </div> */}
               {/* <hr> */}
               
               <form noValidate onSubmit={this.handleSubmit}>
@@ -150,25 +149,7 @@ export default class General extends Component {
                       />
                     </div>
                   </div>
-                  {/* <div className="col-12">
-                    <div
-                      className="alert alert-warning alert-dismissible mb-2"
-                      role="alert"
-                    >
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="alert"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">×</span>
-                      </button>
-                      <p className="mb-0">
-                        Your email is not confirmed. Please check your inbox.
-                      </p>
-                      <a href="javascript: void(0);">Resend confirmation</a>
-                    </div>
-                  </div> */}
+                  
                   <div className="col-6">
                     <div className="form-group">
                       <label htmlFor="account-company">Mobile Number 1</label>

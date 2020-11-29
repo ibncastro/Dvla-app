@@ -4,6 +4,14 @@ const Op = Sequelize.Op;
 import bcrypt from 'bcrypt'
 import JWT from 'jsonwebtoken'
 
+import aws from 'aws-sdk';
+const s3 = new aws.S3({
+    signatureVersion: 'v4',
+    accessKeyId: "AKIAJ54LIVEXK6FV6M6A",
+    secretAccessKey: "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",
+    region: 'eu-west-2',
+})
+
 export default function resolver() {
 
   const { db } = this;
@@ -280,7 +288,34 @@ export default function resolver() {
         }).then((newdata) => {
           return newdata
         })
-      }
+      },
+
+      async uploadAvatar(root, { file, vehicleId }, context){
+        const { createReadStream, filename, mimetype, encoding } = await file;
+        const stream = createReadStream()
+        const bucket = 'kucbucket';
+        const params = {
+            Bucket: bucket,
+            Key: vehicleId + '/' + filename,
+            ACL: 'public-read',
+            Body: stream
+        };
+
+        const response = await s3.upload(params).promise()
+
+        return Vehicle.update({
+            image: response.Location
+        },{
+            where: {
+                id: vehicleId
+            }
+        }).then(() => {
+            return {
+                filename: filename,
+                url: response.Location
+            }
+        });
+    },
 
 
 

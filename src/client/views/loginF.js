@@ -30,7 +30,7 @@ class Login extends Component {
         history.go()
       })
     }).catch((e) => {
-      swal("Login Faild!", "Please try again", "fa").then(() => {
+      swal("Login Failed!", "Login Credentials incorrect", "failed").then(() => {
           history.push('/')
           history.go()
       })

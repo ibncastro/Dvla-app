@@ -13,8 +13,12 @@ const GET_VEHICLES = gql `
     roadWorthyCert
     createdAt
     status
-    center
+    center{
+      name
+      code
+    }
     vehicle{
+      id
       modelName
       chasisNo
       fuelType
@@ -22,7 +26,7 @@ const GET_VEHICLES = gql `
       manufacturer
       bodyType
       countryOfOrigin
-      
+      image
     }
   }
 }

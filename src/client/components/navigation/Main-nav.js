@@ -282,7 +282,7 @@ import profileImg from "../../assets/app-assets/images/portrait/small/avatar-s-1
                           </span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-right">
-                          <a
+                          {/* <a
                             className="dropdown-item"
                             href="page-user-profile.html"
                           >
@@ -296,8 +296,8 @@ import profileImg from "../../assets/app-assets/images/portrait/small/avatar-s-1
                           </a>
                           <a className="dropdown-item" href="app-chat.html">
                             <i className="feather icon-message-square" /> Chats
-                          </a>
-                          <div className="dropdown-divider" />
+                          </a> */}
+                          {/* <div className="dropdown-divider" /> */}
                           <button className="dropdown-item" onClick={this.logout}>
                             <i className="feather icon-power" /> Logout
                           </button>

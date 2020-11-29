@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     fuelType: DataTypes.TEXT,
     horsePower: DataTypes.TEXT,
     userId: DataTypes.INTEGER,
-    VRegId: DataTypes.INTEGER
+    VRegId: DataTypes.INTEGER,
+    image: DataTypes.TEXT
   }, {});
   Vehicle.associate = function(models) {
     Vehicle.belongsTo(models.User)

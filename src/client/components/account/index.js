@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Tab, Col, Nav, Row } from "react-bootstrap";
 
-import Sonnet from "../vRegs/Sonnet";
 import General from "./general";
 import ChangePassword from "./changePassword";
-import Info from "./info";
 
 import CurrentUser from "../Queries/currentUser";
 import UpdateInfoMutation from "../mutations/updateInfo";

@@ -1,6 +1,7 @@
 const typeDefinitions = `
 
 scalar DateTime
+scalar Upload
 
 enum Titles {
     Mr
@@ -51,6 +52,11 @@ enum FuelTypes {
     Diesel
 }
 
+type File {
+    filename: String!
+    url: String!
+}
+
     type User {
         id: Int
         title: Titles
@@ -96,6 +102,7 @@ enum FuelTypes {
         horsePower: String
         user: User
         reg: VReg
+        image: String
     } 
 
     type Center {
@@ -227,6 +234,10 @@ enum FuelTypes {
             id: Int!
             status: String!
         ): VReg
+        uploadAvatar (
+            file: Upload!
+            vehicleId: Int
+        ): File
     }
 
     schema {
