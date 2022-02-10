@@ -78,7 +78,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/node": "^7.10.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "babel-plugin-require-context-hook": "^1.0.0",
     "graphql-playground-middleware-express": "^1.7.18"
   }
