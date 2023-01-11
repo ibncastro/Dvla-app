@@ -30,7 +30,7 @@
     "graphql-tools": "^4.0.3",
     "helmet": "^3.23.1",
     "jquery": "^3.5.1",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "mysql2": "^1.7.0",
     "node-fetch": "^2.6.1",
     "popper.js": "^1.16.1",
